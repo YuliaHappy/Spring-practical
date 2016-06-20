@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <bean id="memoryUser" class="com.epam.training.spring.core.practical.dao.impl.MemoryUserDaoImpl">
+           <property name="users">
+               <list>
+                   <bean class="com.epam.training.spring.core.practical.basic.User">
+                       <constructor-arg index="0" value="User_1"/>
+                       <constructor-arg index="1" value="a@epam.com"/>
+                       <constructor-arg index="2" value="#{T(java.util.Date)(1994, 6 , 6)}"/>
+                       <property name="registered" value="true"/>
+                   </bean>
+                   <bean class="com.epam.training.spring.core.practical.basic.User">
+                       <constructor-arg index="0" value="User_2"/>
+                       <constructor-arg index="1" value="b@epam.com"/>
+                       <constructor-arg index="2" value="#{T(java.util.Date)(1994, 7 , 7)}"/>
+                   </bean>
+               </list>
+           </property>
+    </bean>
+
+    <bean id="userService" class="com.epam.training.spring.core.practical.services.UserService">
+        <constructor-arg ref="memoryUser"/>
+    </bean>
+
+    <bean id="memoryEvent" class="com.epam.training.spring.core.practical.dao.impl.MemoryEventDaoImpl">
+        <property name="events">
+            <list>
+                <bean class="com.epam.training.spring.core.practical.basic.Event">
+                    <constructor-arg index="0" value=""/>
+                    <constructor-arg index="1" ref=""/>
+                    <constructor-arg index="2" ref=""/>
+                    <constructor-arg index="3" ref=""/>
+                    <constructor-arg index="4" value=""/>
+                    <constructor-arg index="5" value=""/>
+                </bean>
+            </list>
+        </property>        
+    </bean>
+
+    <bean id="eventService" class="com.epam.training.spring.core.practical.services.EventService">
+        <constructor-arg ref="memoryEvent"/>
+    </bean>
+
+    <bean id="auditorium_1" class="com.epam.training.spring.core.practical.basic.Auditorium">
+        <constructor-arg index="0" value="Auditorium_1"/>
+        <constructor-arg index="1" value="20"/>
+        <constructor-arg index="2">
+            <set>
+                <value>10</value>
+                <value>11</value>
+            </set>
+        </constructor-arg>
+    </bean>
+
+    <bean id="auditorium_2" class="com.epam.training.spring.core.practical.basic.Auditorium">
+        <constructor-arg index="0" value="Auditorium_2"/>
+        <constructor-arg index="1" value="15"/>
+        <constructor-arg index="2">
+            <set>
+                <value>7</value>
+                <value>8</value>
+            </set>
+        </constructor-arg>
+    </bean>
+
+    <bean id="memoryAuditorium" class="com.epam.training.spring.core.practical.dao.impl.MemoryAuditoriumDaoImpl">
+        <constructor-arg>
+            <list>
+                <bean class="com.epam.training.spring.core.practical.basic.Auditorium">
+                    <constructor-arg index="0" value="Auditorium_1"/>
+                    <constructor-arg index="1" value="20"/>
+                    <constructor-arg index="2">
+                        <set>
+                            <value>10</value>
+                            <value>11</value>
+                        </set>
+                    </constructor-arg>
+                </bean>
+                <bean class="com.epam.training.spring.core.practical.basic.Auditorium">
+                    <constructor-arg index="0" value="Auditorium_2"/>
+                    <constructor-arg index="1" value="15"/>
+                    <constructor-arg index="2">
+                        <set>
+                            <value>7</value>
+                            <value>8</value>
+                        </set>
+                    </constructor-arg>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="auditoriumService" class="com.epam.training.spring.core.practical.services.AuditoriumService">
+        <constructor-arg ref="memoryAuditorium"/>
+    </bean>
+
+    <bean id="discountService" class="com.epam.training.spring.core.practical.services.DiscountService">
+        <constructor-arg>
+            <list>
+                <bean class="com.epam.training.spring.core.practical.discountStrategy.impl.BirthdayStrategy"/>
+                <bean class="com.epam.training.spring.core.practical.discountStrategy.impl.NumberTicketStrategy"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="memoryBooking" class="com.epam.training.spring.core.practical.dao.impl.MemoryBookingDaoImpl"/>
+
+    <bean id="bookingService" class="com.epam.training.spring.core.practical.services.BookingService">
+        <constructor-arg index="0" ref="memoryBooking"/>
+        <constructor-arg index="1" ref="discountService"/>
+    </bean>
+</beans>
