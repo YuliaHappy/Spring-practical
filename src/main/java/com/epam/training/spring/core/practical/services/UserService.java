@@ -7,9 +7,6 @@ import com.epam.training.spring.core.practical.dao.interfaces.UserDao;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by Iuliia_Savich on 6/20/2016.
- */
 public class UserService {
     private UserDao userDao;
 

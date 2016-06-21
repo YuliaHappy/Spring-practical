@@ -13,6 +13,5 @@ public class BirthdayStrategy implements DiscountStrategy {
         return (user.getBirthday().getMonth() == event.getDateTime().getMonthValue() &&
                 user.getBirthday().getDay() == event.getDateTime().getDayOfMonth()) ?
                 5 : 0;
-
     }
 }

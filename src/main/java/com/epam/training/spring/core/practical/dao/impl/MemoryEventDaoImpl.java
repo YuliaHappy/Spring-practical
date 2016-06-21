@@ -5,13 +5,9 @@ import com.epam.training.spring.core.practical.basic.Event;
 import com.epam.training.spring.core.practical.dao.interfaces.EventDao;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by Iuliia_Savich on 6/20/2016.
- */
 public class MemoryEventDaoImpl implements EventDao {
     private List<Event> events;
 

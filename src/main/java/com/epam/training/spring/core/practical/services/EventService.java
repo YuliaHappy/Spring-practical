@@ -9,6 +9,9 @@ import java.util.List;
 public class EventService {
     EventDao eventDao;
 
+    public EventService() {
+    }
+
     public EventService(EventDao eventDao) {
         this.eventDao = eventDao;
     }
