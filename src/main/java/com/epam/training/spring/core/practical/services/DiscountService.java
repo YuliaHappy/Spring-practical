@@ -8,7 +8,7 @@ import com.epam.training.spring.core.practical.discountStrategy.DiscountStrategy
 import java.util.List;
 
 public class DiscountService {
-    List<DiscountStrategy> discountStrategies;
+    private List<DiscountStrategy> discountStrategies;
 
     public DiscountService(List<DiscountStrategy> discountStrategies) {
         this.discountStrategies = discountStrategies;

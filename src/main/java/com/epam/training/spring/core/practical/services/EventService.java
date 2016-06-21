@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class EventService {
-    EventDao eventDao;
+    private EventDao eventDao;
 
     public EventService(EventDao eventDao) {
         this.eventDao = eventDao;
