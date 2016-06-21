@@ -4,6 +4,7 @@ import com.epam.training.spring.core.practical.basic.Ticket;
 import com.epam.training.spring.core.practical.basic.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserDao {
     void register(User user);
@@ -12,6 +13,7 @@ public interface UserDao {
     User getById(int id);
     User getUserByEmail(String email);
     List<User> getUsersByName(String name);
-    List<Ticket> getBookedTickets(User user);
+    Set<Ticket> getBookedTickets(User user);
     boolean isRegistered(User user);
+    List<User> getAll();
 }

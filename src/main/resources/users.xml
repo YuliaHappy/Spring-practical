@@ -4,15 +4,27 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-    <bean class="com.epam.training.spring.core.practical.basic.User">
+    <bean id="dateFormat" class="java.text.SimpleDateFormat">
+        <constructor-arg value="MM/dd/yyyy"/>
+    </bean>
+
+    <bean id="user_1" class="com.epam.training.spring.core.practical.basic.User">
         <constructor-arg index="0" value="User_1"/>
         <constructor-arg index="1" value="a@epam.com"/>
-        <constructor-arg index="2" value="#{T(java.util.Date)(1994, 6 , 6)}"/>
+        <constructor-arg index="2">
+            <bean factory-bean="dateFormat" factory-method="parse">
+                <constructor-arg value="06/06/1994"/>
+            </bean>
+        </constructor-arg>
         <property name="registered" value="true"/>
     </bean>
-    <bean class="com.epam.training.spring.core.practical.basic.User">
+    <bean id="user_2" class="com.epam.training.spring.core.practical.basic.User">
         <constructor-arg index="0" value="User_2"/>
         <constructor-arg index="1" value="b@epam.com"/>
-        <constructor-arg index="2" value="#{T(java.util.Date)(1994, 7 , 7)}"/>
+        <constructor-arg index="2">
+            <bean factory-bean="dateFormat" factory-method="parse">
+                <constructor-arg value="07/07/1994"/>
+            </bean>
+        </constructor-arg>
     </bean>
 </beans>

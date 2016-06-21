@@ -1,14 +1,12 @@
 package com.epam.training.spring.core.practical.basic;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class User {
     private int id;
     private String name;
     private String email;
-    private List<Ticket> bookedTickets;
+    private Set<Ticket> bookedTickets;
     private boolean isRegistered;
 
     private Date birthday;
@@ -18,7 +16,7 @@ public class User {
         this.name = name;
         this.email = email;
         this.birthday = birthday;
-        this.bookedTickets = new ArrayList<Ticket>();
+        this.bookedTickets = new HashSet();
         isRegistered = false;
     }
 
@@ -46,7 +44,7 @@ public class User {
         return email;
     }
 
-    public List<Ticket> getBookedTickets() {
+    public Set<Ticket> getBookedTickets() {
         return bookedTickets;
     }
 
@@ -64,7 +62,7 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", bookedTickets=" + bookedTickets +
+                ", bookedTickets=" + bookedTickets.toString() +
                 ", isRegistered=" + isRegistered +
                 ", birthday=" + birthday +
                 '}';

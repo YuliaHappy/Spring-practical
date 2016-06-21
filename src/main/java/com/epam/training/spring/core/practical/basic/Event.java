@@ -1,7 +1,7 @@
 package com.epam.training.spring.core.practical.basic;
 
 import java.time.LocalDateTime;
-import java.util.Map;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Event {
@@ -11,6 +11,7 @@ public class Event {
     private LocalDateTime dateTime;
     private Auditorium auditorium;
     private int vipPriceTicket;
+    private Set<Ticket> tickets;
 
     public Event(String name, LocalDateTime dateTime, Auditorium auditorium,
                  Rating rating, int basePriceTicket, int vipPriceTicket) {
@@ -20,6 +21,14 @@ public class Event {
         this.rating = rating;
         this.basePriceTicket = basePriceTicket;
         this.vipPriceTicket = vipPriceTicket;
+        tickets = new HashSet<>();
+        for (int i = 0; i < auditorium.getCountOfSeats(); i++) {
+            tickets.add(new Ticket(Integer.toString(i + 1), this));
+        }
+    }
+
+    public Set<Ticket> getTickets() {
+        return tickets;
     }
 
     public String getName() {
@@ -52,6 +61,19 @@ public class Event {
 
     public void setAuditorium(Auditorium auditorium) {
         this.auditorium = auditorium;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "name='" + name + '\'' +
+                ", rating=" + rating.toString() +
+                ", basePriceTicket=" + basePriceTicket +
+                ", dateTime=" + dateTime.toString() +
+                ", auditorium=" + auditorium.getName() +
+                ", vipPriceTicket=" + vipPriceTicket +
+                ", tickets=" + tickets.toString() +
+                '}';
     }
 }
 

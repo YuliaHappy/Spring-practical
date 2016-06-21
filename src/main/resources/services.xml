@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <import resource="userDao.xml"/>
+    <bean id="userService" class="com.epam.training.spring.core.practical.services.UserService">
+        <constructor-arg ref="memoryUser"/>
+    </bean>
+
+    <import resource="eventDao.xml"/>
+    <bean id="eventService" class="com.epam.training.spring.core.practical.services.EventService">
+        <constructor-arg ref="memoryEvent"/>
+    </bean>
+
+    <import resource="auditoriumDao.xml"/>
+    <bean id="auditoriumService" class="com.epam.training.spring.core.practical.services.AuditoriumService">
+        <constructor-arg ref="memoryAuditorium"/>
+    </bean>
+
+    <bean id="discountService" class="com.epam.training.spring.core.practical.services.DiscountService">
+        <constructor-arg>
+            <list>
+                <bean class="com.epam.training.spring.core.practical.discountStrategy.impl.BirthdayStrategy"/>
+                <bean class="com.epam.training.spring.core.practical.discountStrategy.impl.NumberTicketStrategy"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="bookingService" class="com.epam.training.spring.core.practical.services.BookingService">
+        <constructor-arg index="0" ref="discountService"/>
+        <constructor-arg index="1">
+            <map>
+                <entry key-ref="event_1">
+                    <set></set>
+                </entry>
+                <entry key-ref="event_2">
+                    <set></set>
+                </entry>
+                <entry key-ref="event_3">
+                    <set></set>
+                </entry>
+            </map>
+        </constructor-arg>
+    </bean>
+</beans>

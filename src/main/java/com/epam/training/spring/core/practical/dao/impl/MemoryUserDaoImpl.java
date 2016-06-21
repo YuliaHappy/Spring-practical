@@ -6,6 +6,7 @@ import com.epam.training.spring.core.practical.dao.interfaces.UserDao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class MemoryUserDaoImpl implements UserDao{
     private List<User> users;
@@ -61,11 +62,16 @@ public class MemoryUserDaoImpl implements UserDao{
         return usersByName;
     }
 
-    public List<Ticket> getBookedTickets(User user) {
+    public Set<Ticket> getBookedTickets(User user) {
         return user.getBookedTickets();
     }
 
     public boolean isRegistered(User user) {
         return user.isRegistered();
+    }
+
+    @Override
+    public List<User> getAll() {
+        return users;
     }
 }

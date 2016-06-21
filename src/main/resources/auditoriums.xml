@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <bean id="auditorium_1" class="com.epam.training.spring.core.practical.basic.Auditorium">
+        <constructor-arg index="0" value="Auditorium_1"/>
+        <constructor-arg index="1" value="20"/>
+        <constructor-arg index="2">
+            <set>
+                <value>10</value>
+                <value>11</value>
+            </set>
+        </constructor-arg>
+    </bean>
+    <bean id="auditorium_2" class="com.epam.training.spring.core.practical.basic.Auditorium">
+        <constructor-arg index="0" value="Auditorium_2"/>
+        <constructor-arg index="1" value="15"/>
+        <constructor-arg index="2">
+            <set>
+                <value>7</value>
+                <value>8</value>
+            </set>
+        </constructor-arg>
+    </bean>
+</beans>

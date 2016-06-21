@@ -5,6 +5,7 @@ import com.epam.training.spring.core.practical.basic.User;
 import com.epam.training.spring.core.practical.dao.interfaces.UserDao;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Iuliia_Savich on 6/20/2016.
@@ -36,11 +37,15 @@ public class UserService {
         return userDao.getUsersByName(name);
     }
 
-    public List<Ticket> getBookedTickets(User user) {
+    public Set<Ticket> getBookedTickets(User user) {
         return userDao.getBookedTickets(user);
     }
 
     public boolean isRegistered(User user) {
         return userDao.isRegistered(user);
+    }
+
+    public List<User> getAll() {
+        return userDao.getAll();
     }
 }

@@ -41,4 +41,14 @@ public class Auditorium {
     public boolean isVip(int seat) {
         return vipSeats.contains(seat);
     }
+
+    @Override
+    public String toString() {
+        return "Auditorium{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", countOfSeats=" + countOfSeats +
+                ", vipSeats=" + vipSeats.toString() +
+                '}';
+    }
 }
