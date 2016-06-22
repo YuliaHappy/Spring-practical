@@ -11,11 +11,18 @@ public class Auditorium {
     private int countOfSeats;
     private Set<Integer> vipSeats;
 
-    public Auditorium(String name, int countOfSeats, Set<Integer> vipSeats) {
-        this.id = new Random().nextInt();
+    public Auditorium(int id, String name, int countOfSeats) {
+        this.id = id;
         this.name = name;
         this.countOfSeats = countOfSeats;
+    }
+
+    public void setVipSeats(Set<Integer> vipSeats) {
         this.vipSeats = vipSeats;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {
