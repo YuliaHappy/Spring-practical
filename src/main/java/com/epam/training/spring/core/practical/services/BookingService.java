@@ -3,7 +3,6 @@ package com.epam.training.spring.core.practical.services;
 import com.epam.training.spring.core.practical.basic.Event;
 import com.epam.training.spring.core.practical.basic.Ticket;
 import com.epam.training.spring.core.practical.basic.User;
-import com.epam.training.spring.core.practical.dao.interfaces.BookingDao;
 
 import java.util.Map;
 import java.util.Set;
@@ -11,6 +10,9 @@ import java.util.Set;
 public class BookingService {
     private DiscountService discountService;
     private Map<Event, Set<Ticket>> bookings;
+
+    public BookingService() {
+    }
 
     public BookingService(DiscountService discountService, Map<Event, Set<Ticket>> bookings) {
         this.discountService = discountService;
