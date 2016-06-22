@@ -1,7 +1,6 @@
 package com.epam.training.spring.core.practical;
 
 import com.epam.training.spring.core.practical.services.AuditoriumService;
-import com.epam.training.spring.core.practical.services.BookingService;
 import com.epam.training.spring.core.practical.services.EventService;
 import com.epam.training.spring.core.practical.services.UserService;
 

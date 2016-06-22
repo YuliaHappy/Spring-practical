@@ -10,14 +10,13 @@ public class App {
     private UserService userService;
     private AuditoriumService auditoriumService;
     private EventService eventService;
+    private String emailUser;
 
     public App(UserService userService, AuditoriumService auditoriumService, EventService eventService) {
         this.userService = userService;
         this.auditoriumService = auditoriumService;
         this.eventService = eventService;
     }
-
-    private String emailUser;
 
     public UserService getUserService() {
         return userService;
@@ -36,8 +35,9 @@ public class App {
 
         App app = (App) ctx.getBean("app");
 
-        System.out.println("User name with email (" + app.getEmailUser() + "): "
-                    + app.getUserService().getUserByEmail(app.getEmailUser()).getName());
+        String s = String.format("User name with email (%s): %s", app.getEmailUser(),
+                app.getUserService().getUserByEmail(app.getEmailUser()).getName());
+        System.out.println(s);
 
         Reporter reporter = new Reporter();
         System.out.println(reporter.createReporter(app.userService, app.auditoriumService, app.eventService));

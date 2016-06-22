@@ -25,9 +25,15 @@ public class MemoryUserDaoImpl implements UserDao{
     }
 
     public void update(User user) {
+        if (user == null) {
+            throw new NullPointerException("User for update is empty!");
+        }
         for (User u :
                 users) {
-            if (u.getId() == user.getId()) u = user;
+            if (u.getId() == user.getId()) {
+                u.update(user.getName(), user.getEmail(), user.getBookedTickets(),
+                        user.isRegistered());
+            }
         }
     }
 
@@ -52,7 +58,7 @@ public class MemoryUserDaoImpl implements UserDao{
     }
 
     public List<User> getUsersByName(String name) {
-        List<User> usersByName = new ArrayList<User>();
+        List<User> usersByName = new ArrayList<>();
         for (User u :
                 users) {
             if (u.getName().equals(name)) {
