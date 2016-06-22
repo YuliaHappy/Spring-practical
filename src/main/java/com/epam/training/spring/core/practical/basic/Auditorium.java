@@ -1,5 +1,6 @@
 package com.epam.training.spring.core.practical.basic;
 
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -11,7 +12,7 @@ public class Auditorium {
     private Set<Integer> vipSeats;
 
     public Auditorium(String name, int countOfSeats, Set<Integer> vipSeats) {
-        this.id = (int) (Math.random() * 1000);
+        this.id = new Random().nextInt();
         this.name = name;
         this.countOfSeats = countOfSeats;
         this.vipSeats = vipSeats;

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 public class AuditoriumService {
-    AuditoriumDao auditoriumDao;
+    private AuditoriumDao auditoriumDao;
 
     public AuditoriumService(AuditoriumDao auditoriumDao) {
         this.auditoriumDao = auditoriumDao;

@@ -12,12 +12,11 @@ public class User {
     private Date birthday;
 
     public User(String name, String email, Date birthday) {
-        this.id = (int) (Math.random() * 1000);
+        this.id = new Random().nextInt();
         this.name = name;
         this.email = email;
         this.birthday = birthday;
         this.bookedTickets = new HashSet();
-        isRegistered = false;
     }
 
     public void setEmail(String email) {
@@ -66,5 +65,13 @@ public class User {
                 ", isRegistered=" + isRegistered +
                 ", birthday=" + birthday +
                 '}';
+    }
+
+    public void update(String name, String email,
+                       Set<Ticket> bookedTickets, boolean isRegistered) {
+        this.name = name;
+        this.email = email;
+        this.bookedTickets = bookedTickets;
+        this.isRegistered = isRegistered;
     }
 }

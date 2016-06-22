@@ -1,8 +1,8 @@
-package com.epam.training.spring.core.practical.discountStrategy.impl;
+package com.epam.training.spring.core.practical.strategy.discount.impl;
 
 import com.epam.training.spring.core.practical.basic.Event;
 import com.epam.training.spring.core.practical.basic.User;
-import com.epam.training.spring.core.practical.discountStrategy.DiscountStrategy;
+import com.epam.training.spring.core.practical.strategy.discount.DiscountStrategy;
 
 public class NumberTicketStrategy implements DiscountStrategy {
     @Override

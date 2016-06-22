@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class BookingService {
-    DiscountService discountService;
+    private DiscountService discountService;
     private Map<Event, Set<Ticket>> bookings;
 
     public BookingService() {

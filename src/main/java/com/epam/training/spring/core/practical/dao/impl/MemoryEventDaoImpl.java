@@ -49,7 +49,8 @@ public class MemoryEventDaoImpl implements EventDao {
     //TODO
     @Override
     public List<Event> getNextEvents(LocalDateTime to) {
-        return null;
+        return events.stream().filter(event -> event.getDateTime().isAfter(LocalDateTime.now())
+            && event.getDateTime().isBefore(to)).collect(Collectors.toList());
     }
 
     @Override
