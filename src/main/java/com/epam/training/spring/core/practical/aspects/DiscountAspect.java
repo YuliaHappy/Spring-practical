@@ -25,7 +25,7 @@ public class DiscountAspect {
         return discountUserCounter;
     }
 
-    @AfterReturning(pointcut = "execution(* com.epam.training.spring.core.practical.discountStrategy.impl.BirthdayStrategy.getDiscount(..)) " +
+    @AfterReturning(pointcut = "execution(* com.epam.training.spring.core.practical.strategy.discount.impl.BirthdayStrategy.getDiscount(..)) " +
             "&& args(user, ..)", returning = "discount")
     public void countBirthdayDiscount(User user, double discount) {
         if (discount != 0) {
@@ -34,7 +34,7 @@ public class DiscountAspect {
         }
     }
 
-    @AfterReturning(pointcut = "execution(* com.epam.training.spring.core.practical.discountStrategy.impl.NumberTicketStrategy.getDiscount(..)) " +
+    @AfterReturning(pointcut = "execution(* com.epam.training.spring.core.practical.strategy.discount.impl.NumberTicketStrategy.getDiscount(..)) " +
             "&& args(user, ..)", returning = "discount")
     public void countNumberTicketDiscount(User user, double discount) {
         if (discount != 0) {
