@@ -66,4 +66,12 @@ public class User {
                 ", birthday=" + birthday +
                 '}';
     }
+
+    public void update(String name, String email,
+                       Set<Ticket> bookedTickets, boolean isRegistered) {
+        this.name = name;
+        this.email = email;
+        this.bookedTickets = bookedTickets;
+        this.isRegistered = isRegistered;
+    }
 }

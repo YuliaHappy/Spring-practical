@@ -1,9 +1,8 @@
 package com.epam.training.spring.core.practical.services;
 
 import com.epam.training.spring.core.practical.basic.Event;
-import com.epam.training.spring.core.practical.basic.Ticket;
 import com.epam.training.spring.core.practical.basic.User;
-import com.epam.training.spring.core.practical.discountStrategy.DiscountStrategy;
+import com.epam.training.spring.core.practical.strategy.discount.DiscountStrategy;
 
 import java.util.List;
 

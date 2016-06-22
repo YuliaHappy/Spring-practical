@@ -22,8 +22,8 @@
     <bean id="discountService" class="com.epam.training.spring.core.practical.services.DiscountService">
         <constructor-arg>
             <list>
-                <bean class="com.epam.training.spring.core.practical.discountStrategy.impl.BirthdayStrategy"/>
-                <bean class="com.epam.training.spring.core.practical.discountStrategy.impl.NumberTicketStrategy"/>
+                <bean class="com.epam.training.spring.core.practical.strategy.discount.impl.BirthdayStrategy"/>
+                <bean class="com.epam.training.spring.core.practical.strategy.discount.impl.NumberTicketStrategy"/>
             </list>
         </constructor-arg>
     </bean>
