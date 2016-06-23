@@ -1,43 +1,43 @@
+
 CREATE SCHEMA bookingService AUTHORIZATION postgres;
-    CREATE TABLE bookingService.user(
-        id INT PRIMARY KEY, 
-        name VARCHAR(255), 
-        email VARCHAR(255) UNIQUE,
-        birthday DATE NOT NULL);
-    CREATE TABLE bookingService.auditorium(
-        id INT PRIMARY KEY,
-        name VARCHAR(255),
-        countOfSeats INT);
-    CREATE TABLE bookingService.vipSeats(
-        id INT PRIMARY KEY,
-        idAuditorium INT,
-        numberSeat INT NOT NULL,
-        FOREIGN KEY (idAuditorium) REFERENCES bookingService.auditorium(id) ON DELETE CASCADE);
-	CREATE TABLE bookingService.event(
-       name VARCHAR(255) PRIMARY KEY,
-       rating varchar(5) NOT NULL CHECK (rating IN('HIGH', 'MID', 'LOW')),
-       basePrice INT NOT NULL,
-       vipPrice INT NOT NULL,
-       dateTime TIMESTAMP NOT NULL,
-       idAuditorium INT,
-       FOREIGN KEY (idAuditorium) REFERENCES bookingService.auditorium(id) ON DELETE CASCADE);
-	CREATE TABLE bookingService.event(
-		name VARCHAR(255) PRIMARY KEY,
-		rating varchar(5) NOT NULL CHECK (rating IN('HIGH', 'MID', 'LOW')),
-		basePrice INT NOT NULL,
-		vipPrice INT NOT NULL,
-		dateTime TIMESTAMP NOT NULL,
-		idAuditorium INT,
-		FOREIGN KEY (idAuditorium) REFERENCES bookingService.auditorium(id) ON DELETE CASCADE);
-		
-	CREATE TABLE bookingservice.bookedTicket (
-		id SERIAL PRIMARY KEY NOT NULL,
-		idUser INT NOT NULL,
-		nameEvent VARCHAR(255),
-		seat VARCHAR(255),
-		CONSTRAINT bookedTicket___fk_idUser FOREIGN KEY (idUser) REFERENCES bookingService.user(id) ON DELETE CASCADE ,
-		CONSTRAINT bookedTicket___fk_nameEvent FOREIGN KEY (nameEvent, seat) REFERENCES bookingService.ticket(nameEvent, seat) ON DELETE CASCADE
-	);
+
+CREATE TABLE bookingService.user(
+  id INT PRIMARY KEY,
+  name VARCHAR(255),
+  email VARCHAR(255) UNIQUE,
+  birthday DATE NOT NULL);
+CREATE TABLE bookingService.auditorium(
+  id INT PRIMARY KEY,
+  name VARCHAR(255),
+  countOfSeats INT);
+CREATE TABLE bookingService.vipSeats(
+  id INT PRIMARY KEY,
+  idAuditorium INT,
+  numberSeat INT NOT NULL,
+  FOREIGN KEY (idAuditorium) REFERENCES bookingService.auditorium(id) ON DELETE CASCADE);
+CREATE TABLE bookingService.event(
+  name VARCHAR(255) PRIMARY KEY,
+  rating varchar(5) NOT NULL CHECK (rating IN('HIGH', 'MID', 'LOW')),
+  basePrice INT NOT NULL,
+  vipPrice INT NOT NULL,
+  dateTime TIMESTAMP NOT NULL,
+  idAuditorium INT,
+  FOREIGN KEY (idAuditorium) REFERENCES bookingService.auditorium(id) ON DELETE CASCADE);
+CREATE TABLE bookingService.event(
+  name VARCHAR(255) PRIMARY KEY,
+  rating varchar(5) NOT NULL CHECK (rating IN('HIGH', 'MID', 'LOW')),
+  basePrice INT NOT NULL,
+  vipPrice INT NOT NULL,
+  dateTime TIMESTAMP NOT NULL,
+  idAuditorium INT,
+  FOREIGN KEY (idAuditorium) REFERENCES bookingService.auditorium(id) ON DELETE CASCADE);
+CREATE TABLE bookingservice.bookedTicket (
+  id SERIAL PRIMARY KEY NOT NULL,
+  idUser INT NOT NULL,
+  nameEvent VARCHAR(255),
+  seat VARCHAR(255),
+  CONSTRAINT bookedTicket___fk_idUser FOREIGN KEY (idUser) REFERENCES bookingService.user(id) ON DELETE CASCADE ,
+  CONSTRAINT bookedTicket___fk_nameEvent FOREIGN KEY (nameEvent, seat) REFERENCES bookingService.ticket(nameEvent, seat) ON DELETE CASCADE);
 	   
 INSERT INTO bookingService.user VALUES(1, 'User_1', 'a@epam.com', '1994-06-06');
 INSERT INTO bookingService.user VALUES(2, 'User_2', 'b@epam.com', '1994-07-07');
