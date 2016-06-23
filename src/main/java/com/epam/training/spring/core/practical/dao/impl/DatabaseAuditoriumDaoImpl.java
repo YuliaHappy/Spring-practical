@@ -1,12 +1,17 @@
 package com.epam.training.spring.core.practical.dao.impl;
 
 import com.epam.training.spring.core.practical.basic.Auditorium;
+import com.epam.training.spring.core.practical.basic.VipSeat;
 import com.epam.training.spring.core.practical.dao.impl.mappers.AuditoriumMapper;
+import com.epam.training.spring.core.practical.dao.impl.mappers.VipSeatsMapper;
 import com.epam.training.spring.core.practical.dao.interfaces.AuditoriumDao;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class DatabaseAuditoriumDaoImpl implements AuditoriumDao{
     JdbcTemplate jdbcTemplate;
@@ -14,6 +19,7 @@ public class DatabaseAuditoriumDaoImpl implements AuditoriumDao{
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
     @Override
     public void add(Auditorium auditorium) {
         jdbcTemplate.update("INSERT INTO bookingservice.auditorium VALUES (?, ?, ?)",
@@ -24,31 +30,55 @@ public class DatabaseAuditoriumDaoImpl implements AuditoriumDao{
                         "WHERE name = ?",
                 new Object[] {auditorium.getName()},
                 new AuditoriumMapper()).getId());
-        //TODO add vip-seats
+        for (VipSeat vipSeat :
+                auditorium.getVipSeats()) {
+            jdbcTemplate.update("INSERT INTO bookingservice.vipseats VALUES(?, ?, ?)",
+                    null,
+                    vipSeat.getIdAuditorium(),
+                    vipSeat.getNumberSeat());
+            vipSeat.setId(jdbcTemplate.queryForObject("SELECT * FROM bookingservice.vipseats " +
+                            "WHERE idauditorium = ? and numberseat = ?",
+                    new Object[] {vipSeat.getIdAuditorium(), vipSeat.getNumberSeat()},
+                    new VipSeatsMapper()).getId());
+        }
     }
 
     @Override
     public void remove(Auditorium auditorium) {
-
+        jdbcTemplate.update("DELETE FROM bookingservice.auditorium " +
+                        "WHERE id = ?",
+                auditorium.getId());
     }
 
     @Override
     public Auditorium getById(int id) {
-        return null;
+        return jdbcTemplate.queryForObject("SELECT * FROM bookingservice.auditorium " +
+                        "WHERE id = ?",
+                new Object[] {id},
+                new AuditoriumMapper());
     }
 
     @Override
     public Set<Integer> getSeatsNumber(Auditorium auditorium) {
-        return null;
+        int countOfSeats = jdbcTemplate.queryForObject("SELECT * FROM bookingservice.auditorium " +
+                        "WHERE id = ?",
+                new Object[] {auditorium.getId()},
+                new AuditoriumMapper()).getCountOfSeats();
+        return IntStream.range(1, countOfSeats + 1).boxed()
+                .collect(Collectors.toSet());
     }
 
     @Override
-    public Set<Integer> getVipSeats(Auditorium auditorium) {
-        return null;
+    public Set<VipSeat> getVipSeats(Auditorium auditorium) {
+        return new HashSet<>(jdbcTemplate.query("SELECT * FROM bookingservice.vipSeats " +
+                        "WHERE idAuditorium = ?",
+                new Object[] {auditorium.getId()},
+                new VipSeatsMapper()));
     }
 
     @Override
     public List<Auditorium> getAll() {
-        return null;
+        return jdbcTemplate.query("SELECT * FROM bookingservice.auditorium ",
+                new AuditoriumMapper());
     }
 }

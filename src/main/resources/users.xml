@@ -9,9 +9,10 @@
     </bean>
 
     <bean id="user_1" class="com.epam.training.spring.core.practical.basic.User">
-        <constructor-arg index="0" value="User_1"/>
-        <constructor-arg index="1" value="a@epam.com"/>
-        <constructor-arg index="2">
+        <constructor-arg index="0" value="1"/>
+        <constructor-arg index="1" value="User_1"/>
+        <constructor-arg index="2" value="a@epam.com"/>
+        <constructor-arg index="3">
             <bean factory-bean="dateFormat" factory-method="parse">
                 <constructor-arg value="06/06/1994"/>
             </bean>
@@ -19,9 +20,10 @@
         <property name="registered" value="true"/>
     </bean>
     <bean id="user_2" class="com.epam.training.spring.core.practical.basic.User">
-        <constructor-arg index="0" value="User_2"/>
-        <constructor-arg index="1" value="b@epam.com"/>
-        <constructor-arg index="2">
+        <constructor-arg index="0" value="1"/>
+        <constructor-arg index="1" value="User_2"/>
+        <constructor-arg index="2" value="b@epam.com"/>
+        <constructor-arg index="3">
             <bean factory-bean="dateFormat" factory-method="parse">
                 <constructor-arg value="07/07/1994"/>
             </bean>

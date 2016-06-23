@@ -1,6 +1,7 @@
 package com.epam.training.spring.core.practical.dao.impl;
 
 import com.epam.training.spring.core.practical.basic.Auditorium;
+import com.epam.training.spring.core.practical.basic.VipSeat;
 import com.epam.training.spring.core.practical.dao.interfaces.AuditoriumDao;
 
 import java.util.List;
@@ -40,7 +41,7 @@ public class MemoryAuditoriumDaoImpl implements AuditoriumDao{
     }
 
     @Override
-    public Set<Integer> getVipSeats(Auditorium auditorium) {
+    public Set<VipSeat> getVipSeats(Auditorium auditorium) {
         return auditorium.getVipSeats();
     }
 

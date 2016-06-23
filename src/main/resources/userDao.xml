@@ -13,4 +13,9 @@
             </list>
         </property>
     </bean>
+
+    <import resource="database.xml"/>
+    <bean id="databaseUser" class="com.epam.training.spring.core.practical.dao.impl.DatabaseUserDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
 </beans>

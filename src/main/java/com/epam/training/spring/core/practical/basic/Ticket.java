@@ -6,10 +6,10 @@ public class Ticket {
     private String nameEvent;
     private double price;
 
-    public Ticket(String seat, String event) {
+    public Ticket(String seat, String nameEvent) {
         this.seat = seat;
         this.isBought = false;
-        this.nameEvent = event;
+        this.nameEvent = nameEvent;
         this.price = 0;
     }
 

@@ -8,29 +8,29 @@
     <bean id="event_1" class="com.epam.training.spring.core.practical.basic.Event">
         <constructor-arg index="0" value="Event_1"/>
         <constructor-arg index="1" value="#{T(java.time.LocalDateTime).parse('1994-05-05T17:00:00')}"/>
-        <constructor-arg index="2" ref="auditorium_1"/>
-        <constructor-arg index="3" value="HIGH"/>
-        <constructor-arg index="4" value="100"/>
-        <constructor-arg index="5" value="120"/>
+        <constructor-arg index="2" value="HIGH"/>
+        <constructor-arg index="3" value="100"/>
+        <constructor-arg index="4" value="120"/>
+        <property name="auditorium" ref="auditorium_1"/>
     </bean>
 
     <bean id="event_2" class="com.epam.training.spring.core.practical.basic.Event">
         <constructor-arg index="0" value="Event_2"/>
         <constructor-arg index="1"
                          value="#{T(java.time.LocalDateTime).parse('1994-07-07T18:00:00')}"/>
-        <constructor-arg index="2" ref="auditorium_2"/>
-        <constructor-arg index="3" value="MID"/>
-        <constructor-arg index="4" value="70"/>
-        <constructor-arg index="5" value="90"/>
+        <constructor-arg index="2" value="MID"/>
+        <constructor-arg index="3" value="70"/>
+        <constructor-arg index="4" value="90"/>
+        <property name="auditorium" ref="auditorium_2"/>
     </bean>
 
     <bean id="event_3" class="com.epam.training.spring.core.practical.basic.Event">
         <constructor-arg index="0" value="Event_3"/>
         <constructor-arg index="1"
                          value="#{T(java.time.LocalDateTime).parse('1994-10-10T19:00:00')}"/>
-        <constructor-arg index="2" ref="auditorium_1"/>
-        <constructor-arg index="3" value="LOW"/>
-        <constructor-arg index="4" value="50"/>
-        <constructor-arg index="5" value="70"/>
+        <constructor-arg index="2" value="LOW"/>
+        <constructor-arg index="3" value="50"/>
+        <constructor-arg index="4" value="70"/>
+        <property name="auditorium" ref="auditorium_1"/>
     </bean>
 </beans>
