@@ -18,8 +18,8 @@ public class UserService {
         userDao.register(user);
     }
 
-    public void remove(User user) {
-        userDao.remove(user);
+    public void remove(int idUser) {
+        userDao.remove(idUser);
     }
 
     public User getById(int id) {

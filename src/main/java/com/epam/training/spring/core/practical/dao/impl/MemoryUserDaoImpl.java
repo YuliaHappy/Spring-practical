@@ -20,8 +20,8 @@ public class MemoryUserDaoImpl implements UserDao{
         users.add(user);
     }
 
-    public void remove(User user) {
-        users.remove(user);
+    public void remove(int idUser) {
+        users.remove(getById(idUser));
     }
 
     public void update(User user) {

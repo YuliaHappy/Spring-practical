@@ -20,11 +20,10 @@ public class DatabaseUserDaoImpl implements UserDao {
 
     @Override
     public void register(User user) {
-        jdbcTemplate.update("INSERT INTO bookingservice.user VALUES (?, ?, ?, ?)",
-                null,
+        jdbcTemplate.update("INSERT INTO bookingservice.user (name, email, birthday) VALUES (?, ?, ?)",
                 user.getName(),
                 user.getEmail(),
-                user.getBirthday().toString());
+                new java.sql.Date(user.getBirthday().getTime()));
         user.setId(jdbcTemplate.queryForObject("SELECT * FROM bookingservice.user " +
                 "WHERE email = ?",
                 new Object[] {user.getEmail()},
@@ -32,10 +31,10 @@ public class DatabaseUserDaoImpl implements UserDao {
     }
 
     @Override
-    public void remove(User user) {
+    public void remove(int idUser) {
         jdbcTemplate.update("DELETE FROM bookingservice.user " +
                 "WHERE id = ?",
-                user.getId());
+                idUser);
     }
 
     @Override

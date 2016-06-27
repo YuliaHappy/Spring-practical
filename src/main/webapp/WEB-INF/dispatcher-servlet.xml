@@ -13,6 +13,8 @@
     <!--<mvc:view-controller  path="controller" view-name="UserController"/>-->
     <mvc:annotation-driven />
     <context:component-scan base-package="com.epam.training.spring.core.practical.controllers"/>
+
+
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
         <property name="prefix">
@@ -22,7 +24,32 @@
             <value>.jsp</value>
         </property>
     </bean>
+
+    <bean id="viewResolver1" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+        <property name="order" value="1"/>
+        <property name="basename" value="views"/>
+    </bean>
+
     <import resource="classpath:spring.xml"/>
+
+    <!--<bean id="velocityConfigurer"-->
+          <!--class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">-->
+        <!--<property name="resourceLoaderPath" value="/WEB-INF/velocity/" />-->
+    <!--</bean>-->
+
+    <!--<bean id="velocityViewResolver"-->
+          <!--class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">-->
+        <!--<property name="suffix" value=".vm" />-->
+    <!--</bean>-->
+
+    <!--<bean id="multipartResolver"-->
+          <!--class="org.springframework.web.multipart.support.StandardServletMultipartResolver">-->
+    <!--</bean>-->
+
+
+
+
+
     <!--<context:component-scan-->
             <!--base-package="com.epam.training.spring.core.practical.controllers" />-->
 
