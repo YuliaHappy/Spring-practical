@@ -34,5 +34,18 @@
         <a class="btn btn-default" href="/user/userSave" role="button">Добавить пользователя</a>
     </div>
 </div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Добавление пользователя с помощью JSON-файла</h3>
+    </div>
+    <div class="panel-body">
+        <form method="POST" action="/saveJson" enctype="multipart/form-data">
+            <input type="file" id="user" name="users"/>
+            <br>
+            <button type="submit" class="bth bth-default">Сохранить</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>

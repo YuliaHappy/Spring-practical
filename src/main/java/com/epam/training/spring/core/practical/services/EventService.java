@@ -39,4 +39,11 @@ public class EventService {
     public List<Event> getNextEvents(LocalDateTime to) {
         return eventDao.getNextEvents(to);
     }
+
+    public void createEvents(List<Event> events) {
+        for (Event event :
+                events) {
+            eventDao.create(event);
+        }
+    }
 }

@@ -1,16 +1,13 @@
 package com.epam.training.spring.core.practical.controllers;
 
 import com.epam.training.spring.core.practical.basic.User;
-import com.epam.training.spring.core.practical.controllers.forms.UserForm;
 import com.epam.training.spring.core.practical.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -27,11 +24,6 @@ public class UserController {
     @Autowired
     @Qualifier("userService")
     UserService userService;
-
-//    @RequestMapping(value = USER_ABOUT + "/{email}/", method = RequestMethod.GET)
-//    public ModelAndView getUserByEmail(@PathVariable(value = "email") String email) {
-//        return new ModelAndView("user/userAbout", "user", userService.getUserByEmail(email));
-//    }
 
     @RequestMapping(value = ALL_USER, method = RequestMethod.GET)
     public ModelAndView getAllUsers() {

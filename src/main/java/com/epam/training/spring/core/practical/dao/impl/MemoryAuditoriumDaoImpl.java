@@ -20,8 +20,8 @@ public class MemoryAuditoriumDaoImpl implements AuditoriumDao{
     }
 
     @Override
-    public void remove(Auditorium auditorium) {
-        auditoriums.remove(auditorium);
+    public void remove(int id) {
+        auditoriums.remove(getById(id));
     }
 
     @Override

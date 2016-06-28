@@ -8,7 +8,7 @@ import java.util.Set;
 
 public interface AuditoriumDao {
     void add(Auditorium auditorium);
-    void remove(Auditorium auditorium);
+    void remove(int id);
     Auditorium getById(int id);
     Set<Integer> getSeatsNumber(Auditorium auditorium);
     Set<VipSeat> getVipSeats(Auditorium auditorium);

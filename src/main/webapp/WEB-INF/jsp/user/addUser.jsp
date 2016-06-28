@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Добавление пользователя</title>
+    <jsp:include page="../../tags/tagStyle.jsp"/>
 </head>
 <body style="padding: 20px">
 <div class="panel panel-info">

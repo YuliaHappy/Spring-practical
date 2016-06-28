@@ -22,8 +22,7 @@ public class DatabaseAuditoriumDaoImpl implements AuditoriumDao{
 
     @Override
     public void add(Auditorium auditorium) {
-        jdbcTemplate.update("INSERT INTO bookingservice.auditorium VALUES (?, ?, ?)",
-                null,
+        jdbcTemplate.update("INSERT INTO bookingservice.auditorium (name, countofseats) VALUES (?, ?)",
                 auditorium.getName(),
                 auditorium.getCountOfSeats());
         auditorium.setId(jdbcTemplate.queryForObject("SELECT * FROM bookingservice.auditorium " +
@@ -32,8 +31,7 @@ public class DatabaseAuditoriumDaoImpl implements AuditoriumDao{
                 new AuditoriumMapper()).getId());
         for (VipSeat vipSeat :
                 auditorium.getVipSeats()) {
-            jdbcTemplate.update("INSERT INTO bookingservice.vipseats VALUES(?, ?, ?)",
-                    null,
+            jdbcTemplate.update("INSERT INTO bookingservice.vipseats (idauditorium, numberseat) VALUES(?, ?)",
                     vipSeat.getIdAuditorium(),
                     vipSeat.getNumberSeat());
             vipSeat.setId(jdbcTemplate.queryForObject("SELECT * FROM bookingservice.vipseats " +
@@ -44,10 +42,10 @@ public class DatabaseAuditoriumDaoImpl implements AuditoriumDao{
     }
 
     @Override
-    public void remove(Auditorium auditorium) {
+    public void remove(int id) {
         jdbcTemplate.update("DELETE FROM bookingservice.auditorium " +
                         "WHERE id = ?",
-                auditorium.getId());
+                id);
     }
 
     @Override

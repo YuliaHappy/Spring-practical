@@ -13,7 +13,7 @@ public class EventMapper implements RowMapper<Event> {
         return new Event(
                 resultSet.getString("name"),
                 resultSet.getTimestamp("datetime").toLocalDateTime(),
-                Rating.valueOf(resultSet.getString("rating")),
+                resultSet.getString("rating"),
                 resultSet.getInt("basePrice"),
                 resultSet.getInt("vipPrice"));
 

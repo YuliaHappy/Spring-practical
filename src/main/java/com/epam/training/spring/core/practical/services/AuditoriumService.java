@@ -25,4 +25,16 @@ public class AuditoriumService {
     public Set<VipSeat> getVipSeats(Auditorium auditorium) {
         return auditoriumDao.getVipSeats(auditorium);
     }
+
+    public Auditorium getAuditoriumById(int id) {
+        return auditoriumDao.getById(id);
+    }
+
+    public void remove(int id) {
+        auditoriumDao.remove(id);
+    }
+
+    public void add(Auditorium auditorium) {
+        auditoriumDao.add(auditorium);
+    }
 }

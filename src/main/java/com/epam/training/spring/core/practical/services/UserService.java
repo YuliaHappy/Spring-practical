@@ -45,4 +45,11 @@ public class UserService {
     public List<User> getAll() {
         return userDao.getAll();
     }
+
+    public void registerUsers(List<User> users) {
+        for (User user :
+                users) {
+            userDao.register(user);
+        }
+    }
 }
