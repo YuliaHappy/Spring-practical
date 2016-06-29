@@ -20,8 +20,8 @@ public class EventService {
         eventDao.create(event);
     }
 
-    public void remove(Event event) {
-        eventDao.remove(event);
+    public void remove(String name) {
+        eventDao.remove(getByName(name));
     }
 
     public Event getByName(String name) {

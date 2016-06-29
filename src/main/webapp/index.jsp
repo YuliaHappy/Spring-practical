@@ -23,5 +23,14 @@
             <input class="bth bth-default" type="submit" value="В виде PDF" formaction="/auditorium/pdfAuditoriums">
         </div>
     </form>
+    <form class="panel panel-info" action="/event/allEvents">
+        <div class="panel-heading">
+            <h3 class="panel-title">Получить информацию о всех событиях:</h3>
+        </div>
+        <div class="panel-body">
+            <input class="bth bth-default" type="submit" value="В виде списка">
+            <input class="bth bth-default" type="submit" value="В виде PDF" formaction="/event/pdfEvents">
+        </div>
+    </form>
 </body>
 </html>
