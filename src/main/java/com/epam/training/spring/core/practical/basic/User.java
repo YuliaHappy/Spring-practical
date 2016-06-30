@@ -10,6 +10,10 @@ public class User {
     private boolean isRegistered;
     private Date birthday;
 
+    public User() {
+
+    }
+
     public User(int id, String name, String email, Date birthday) {
         this.id = id;
         this.name = name;
@@ -28,6 +32,14 @@ public class User {
 
     public void setRegistered(boolean registered) {
         isRegistered = registered;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public void addBookedTicket(Ticket ticket) {

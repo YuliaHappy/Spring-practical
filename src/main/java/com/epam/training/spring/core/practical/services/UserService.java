@@ -18,8 +18,8 @@ public class UserService {
         userDao.register(user);
     }
 
-    public void remove(User user) {
-        userDao.remove(user);
+    public void remove(int idUser) {
+        userDao.remove(idUser);
     }
 
     public User getById(int id) {
@@ -44,5 +44,12 @@ public class UserService {
 
     public List<User> getAll() {
         return userDao.getAll();
+    }
+
+    public void registerUsers(List<User> users) {
+        for (User user :
+                users) {
+            userDao.register(user);
+        }
     }
 }

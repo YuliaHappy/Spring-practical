@@ -1,0 +1,24 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<html>
+    <form:form method="POST" class="panel panel-info" action="/user/userSave" modelAttribute="user">
+        <div class="panel-heading">
+            <h3 class="panel-title">Добавление пользователя</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <form:label path="name" for="name">Имя</form:label>
+                <form:input type="text" class="form-control" id="name" placeholder="Имя" path="name">
+            </div>
+            <div class="form-group">
+                <form:label path="email" for="email">Электронная почта</form:label>
+                <form:input type="email" class="form-control" id="email" placeholder="Электронная почта" path="email">
+            </div>
+            <div class="form-group">
+                <form:label path="birthday" for="birthday">Дата рождения</form:label>
+                <form:input type="date" class="form-control" id="birthday" placeholder="Дата рождения" path="birthday">
+            </div>
+            <button type="submit" class="bth bth-default  btn-xs">Сохранить</button>
+            <a class="btn btn-default btn-xs" href="/" role="button">Отмена</a>
+        </div>
+    </form:form>
+</html>
