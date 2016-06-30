@@ -1,0 +1,12 @@
+[
+  {
+    "name": "User_123",
+    "email": "user123@epam.com",
+    "birthday": "1994-08-08"
+  },
+  {
+    "name": "User_321",
+    "email": "user321@epam.com",
+    "birthday": "1994-01-01"
+  }
+]

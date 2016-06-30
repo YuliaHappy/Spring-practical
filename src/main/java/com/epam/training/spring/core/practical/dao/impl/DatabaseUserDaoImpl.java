@@ -24,11 +24,10 @@ public class DatabaseUserDaoImpl implements UserDao {
     @Override
     public void register(User user) {
         try {
-            jdbcTemplate.update("INSERT INTO bookingservice.user VALUES (?, ?, ?, ?)",
-                    null,
+            jdbcTemplate.update("INSERT INTO bookingservice.user (name, email, birthday) VALUES (?, ?, ?)",
                     user.getName(),
                     user.getEmail(),
-                    user.getBirthday().toString());
+                    new java.sql.Date(user.getBirthday().getTime()));
         } catch (DataAccessException e) {
             logger.debug(e.getMessage(), e.fillInStackTrace());
         }
@@ -45,11 +44,11 @@ public class DatabaseUserDaoImpl implements UserDao {
     }
 
     @Override
-    public void remove(User user) {
+    public void remove(int idUser) {
         try {
             jdbcTemplate.update("DELETE FROM bookingservice.user " +
                             "WHERE id = ?",
-                    user.getId());
+                    idUser);
         } catch (DataAccessException e) {
             logger.debug(e.getMessage(), e.fillInStackTrace());
         }

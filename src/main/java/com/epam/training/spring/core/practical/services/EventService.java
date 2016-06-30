@@ -20,8 +20,8 @@ public class EventService {
         eventDao.create(event);
     }
 
-    public void remove(Event event) {
-        eventDao.remove(event);
+    public void remove(String name) {
+        eventDao.remove(getByName(name));
     }
 
     public Event getByName(String name) {
@@ -38,5 +38,12 @@ public class EventService {
 
     public List<Event> getNextEvents(LocalDateTime to) {
         return eventDao.getNextEvents(to);
+    }
+
+    public void createEvents(List<Event> events) {
+        for (Event event :
+                events) {
+            eventDao.create(event);
+        }
     }
 }

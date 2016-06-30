@@ -8,7 +8,7 @@ import java.util.Set;
 
 public interface UserDao {
     void register(User user);
-    void remove(User user);
+    void remove(int idUser);
     void update(User user);
     User getById(int id);
     User getUserByEmail(String email);

@@ -6,21 +6,33 @@ import java.util.Set;
 
 public class Event {
     private String name;
+    private LocalDateTime dateTime;
     private Rating rating;
     private int basePriceTicket;
-    private LocalDateTime dateTime;
-    private Auditorium auditorium;
     private int vipPriceTicket;
+    private Auditorium auditorium;
     private Set<Ticket> tickets;
 
-    public Event(String name, LocalDateTime dateTime, Rating rating,
+    public Event(String name, LocalDateTime dateTime, String rating,
                  int basePriceTicket, int vipPriceTicket) {
         this.name = name;
         this.dateTime = dateTime;
-        this.rating = rating;
+        this.rating = Rating.valueOf(rating);
         this.basePriceTicket = basePriceTicket;
         this.vipPriceTicket = vipPriceTicket;
         tickets = new HashSet<>();
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
+    public void setBasePriceTicket(int basePriceTicket) {
+        this.basePriceTicket = basePriceTicket;
     }
 
     public Set<Ticket> getTickets() {
