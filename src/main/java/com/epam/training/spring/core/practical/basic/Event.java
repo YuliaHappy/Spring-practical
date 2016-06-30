@@ -13,18 +13,14 @@ public class Event {
     private int vipPriceTicket;
     private Set<Ticket> tickets;
 
-    public Event(String name, LocalDateTime dateTime, Auditorium auditorium,
-                 Rating rating, int basePriceTicket, int vipPriceTicket) {
+    public Event(String name, LocalDateTime dateTime, Rating rating,
+                 int basePriceTicket, int vipPriceTicket) {
         this.name = name;
         this.dateTime = dateTime;
-        this.auditorium = auditorium;
         this.rating = rating;
         this.basePriceTicket = basePriceTicket;
         this.vipPriceTicket = vipPriceTicket;
         tickets = new HashSet<>();
-        for (int i = 0; i < auditorium.getCountOfSeats(); i++) {
-            tickets.add(new Ticket(Integer.toString(i + 1), this));
-        }
     }
 
     public Set<Ticket> getTickets() {
@@ -61,6 +57,9 @@ public class Event {
 
     public void setAuditorium(Auditorium auditorium) {
         this.auditorium = auditorium;
+        for (int i = 0; i < auditorium.getCountOfSeats(); i++) {
+            tickets.add(new Ticket(Integer.toString(i + 1), this.name));
+        }
     }
 
     @Override
@@ -70,7 +69,6 @@ public class Event {
                 ", rating=" + rating.toString() +
                 ", basePriceTicket=" + basePriceTicket +
                 ", dateTime=" + dateTime.toString() +
-                ", auditorium=" + auditorium.getName() +
                 ", vipPriceTicket=" + vipPriceTicket +
                 ", tickets=" + tickets.toString() +
                 '}';
