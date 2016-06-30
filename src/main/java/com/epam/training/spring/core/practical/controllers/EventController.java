@@ -18,7 +18,6 @@ public class EventController {
     private final String ALL_EVENT = "/allEvents";
     private final String EVENT_ABOUT = "/eventAbout";
     private final String EVENT_DELETE = "/eventDelete";
-    private final String EVENT_SAVE = "/eventSave";
     private final String EVENT_PDF = "/pdfEvents";
 
     @Autowired

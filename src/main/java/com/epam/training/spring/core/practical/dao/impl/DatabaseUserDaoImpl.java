@@ -5,6 +5,8 @@ import com.epam.training.spring.core.practical.basic.User;
 import com.epam.training.spring.core.practical.dao.impl.mappers.TicketMapper;
 import com.epam.training.spring.core.practical.dao.impl.mappers.UserMapper;
 import com.epam.training.spring.core.practical.dao.interfaces.UserDao;
+import org.postgresql.core.Logger;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.HashSet;
@@ -12,7 +14,8 @@ import java.util.List;
 import java.util.Set;
 
 public class DatabaseUserDaoImpl implements UserDao {
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
+    private Logger logger = new Logger();
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -20,76 +23,130 @@ public class DatabaseUserDaoImpl implements UserDao {
 
     @Override
     public void register(User user) {
-        jdbcTemplate.update("INSERT INTO bookingservice.user (name, email, birthday) VALUES (?, ?, ?)",
-                user.getName(),
-                user.getEmail(),
-                new java.sql.Date(user.getBirthday().getTime()));
-        user.setId(jdbcTemplate.queryForObject("SELECT * FROM bookingservice.user " +
-                "WHERE email = ?",
-                new Object[] {user.getEmail()},
-                new UserMapper()).getId());
+        try {
+            jdbcTemplate.update("INSERT INTO bookingservice.user (name, email, birthday) VALUES (?, ?, ?)",
+                    user.getName(),
+                    user.getEmail(),
+                    new java.sql.Date(user.getBirthday().getTime()));
+        } catch (DataAccessException e) {
+            logger.debug(e.getMessage(), e.fillInStackTrace());
+        }
+        int idUser = -1;
+        try {
+            idUser = jdbcTemplate.queryForObject("SELECT * FROM bookingservice.user " +
+                            "WHERE email = ?",
+                    new Object[] {user.getEmail()},
+                    new UserMapper()).getId();
+        } catch (DataAccessException e) {
+            logger.debug(e.getMessage(), e.fillInStackTrace());
+        }
+        user.setId(idUser);
     }
 
     @Override
     public void remove(int idUser) {
-        jdbcTemplate.update("DELETE FROM bookingservice.user " +
-                "WHERE id = ?",
-                idUser);
+        try {
+            jdbcTemplate.update("DELETE FROM bookingservice.user " +
+                            "WHERE id = ?",
+                    idUser);
+        } catch (DataAccessException e) {
+            logger.debug(e.getMessage(), e.fillInStackTrace());
+        }
     }
 
     @Override
     public void update(User user) {
-        jdbcTemplate.update("UPDATE bookingservice.user SET name = ?, email = ?, birthday = ?," +
-                "WHERE id = ?",
-                user.getName(),
-                user.getEmail(),
-                user.getBirthday().toString(),
-                user.getId());
+        try {
+            jdbcTemplate.update("UPDATE bookingservice.user SET name = ?, email = ?, birthday = ?," +
+                            "WHERE id = ?",
+                    user.getName(),
+                    user.getEmail(),
+                    user.getBirthday().toString(),
+                    user.getId());
+        } catch (DataAccessException e) {
+            logger.debug(e.getMessage(), e.fillInStackTrace());
+        }
     }
 
     @Override
     public User getById(int id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM bookingservice.user " +
-                        "WHERE id = ?",
-                new Object[] {id},
-                new UserMapper());
+        User user = null;
+        try {
+            user = jdbcTemplate.queryForObject("SELECT * FROM bookingservice.user " +
+                            "WHERE id = ?",
+                    new Object[] {id},
+                    new UserMapper());
+        } catch (DataAccessException e) {
+            logger.debug(e.getMessage(), e.fillInStackTrace());
+        }
+        return user;
     }
 
     @Override
     public User getUserByEmail(String email) {
-        return jdbcTemplate.queryForObject("SELECT * FROM bookingservice.user " +
-                        "WHERE email = ?",
-                new Object[] {email},
-                new UserMapper());
+        User user = null;
+        try {
+            user = jdbcTemplate.queryForObject("SELECT * FROM bookingservice.user " +
+                            "WHERE email = ?",
+                    new Object[] {email},
+                    new UserMapper());
+        } catch (DataAccessException e) {
+            logger.debug(e.getMessage(), e.fillInStackTrace());
+        }
+        return user;
     }
 
     @Override
     public List<User> getUsersByName(String name) {
-        return jdbcTemplate.query("SELECT * FROM bookingservice.user " +
-                        "WHERE name = ?",
-                new Object[] {name},
-                new UserMapper());
+        List<User> users = null;
+        try {
+            users = jdbcTemplate.query("SELECT * FROM bookingservice.user " +
+                            "WHERE name = ?",
+                    new Object[] {name},
+                    new UserMapper());
+        } catch (DataAccessException e) {
+            logger.debug(e.getMessage(), e.fillInStackTrace());
+        }
+        return users;
     }
 
     @Override
     public Set<Ticket> getBookedTickets(User user) {
-        return new HashSet<>(jdbcTemplate.query("SELECT * FROM bookingservice.bookedticket " +
-                        "WHERE idUser = ?",
-                new Object[] {user.getId()},
-                new TicketMapper()));
+        Set<Ticket> tickets = null;
+        try {
+            tickets = new HashSet<>(jdbcTemplate.query("SELECT * FROM bookingservice.bookedticket " +
+                            "WHERE idUser = ?",
+                    new Object[] {user.getId()},
+                    new TicketMapper()));
+        } catch (DataAccessException e) {
+            logger.debug(e.getMessage(), e.fillInStackTrace());
+        }
+        return tickets;
     }
 
     @Override
     public boolean isRegistered(User user) {
-        return jdbcTemplate.queryForObject("SELECT * FROM bookingservice.user " +
-                        "WHERE id = ?",
-                new Object[] {user.getId()},
-                new UserMapper()).isRegistered();
+        boolean isRegistered = false;
+        try {
+            isRegistered = jdbcTemplate.queryForObject("SELECT * FROM bookingservice.user " +
+                            "WHERE id = ?",
+                    new Object[] {user.getId()},
+                    new UserMapper()).isRegistered();
+        } catch (DataAccessException e) {
+            logger.debug(e.getMessage(), e.fillInStackTrace());
+        }
+        return isRegistered;
     }
 
     @Override
     public List<User> getAll() {
-        return jdbcTemplate.query("SELECT * FROM bookingservice.user ",
-                new UserMapper());
+        List<User> users = null;
+        try {
+            users = jdbcTemplate.query("SELECT * FROM bookingservice.user ",
+                    new UserMapper());
+        } catch (DataAccessException e) {
+            logger.debug(e.getMessage(), e.fillInStackTrace());
+        }
+        return users;
     }
 }

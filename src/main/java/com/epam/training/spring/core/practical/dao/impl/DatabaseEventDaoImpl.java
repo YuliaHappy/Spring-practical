@@ -4,13 +4,16 @@ import com.epam.training.spring.core.practical.basic.Auditorium;
 import com.epam.training.spring.core.practical.basic.Event;
 import com.epam.training.spring.core.practical.dao.impl.mappers.EventMapper;
 import com.epam.training.spring.core.practical.dao.interfaces.EventDao;
+import org.postgresql.core.Logger;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class DatabaseEventDaoImpl implements EventDao {
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
+    private Logger logger = new Logger();
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -18,42 +21,68 @@ public class DatabaseEventDaoImpl implements EventDao {
 
     @Override
     public void create(Event event) {
-        jdbcTemplate.update("INSERT INTO bookingservice.event VALUES (?, ?, ?, ?, ?, ?)",
-                event.getName(),
-                event.getRating().toString(),
-                event.getBasePriceTicket(),
-                event.getVipPriceTicket(),
-                event.getDateTime(),
-                event.getAuditorium().getId());
+        try {
+            jdbcTemplate.update("INSERT INTO bookingservice.event VALUES (?, ?, ?, ?, ?, ?)",
+                    event.getName(),
+                    event.getRating().toString(),
+                    event.getBasePriceTicket(),
+                    event.getVipPriceTicket(),
+                    event.getDateTime(),
+                    event.getAuditorium().getId());
+        } catch (DataAccessException e) {
+            logger.debug(e.getMessage(), e.fillInStackTrace());
+        }
     }
 
     @Override
     public void remove(Event event) {
-        jdbcTemplate.update("DELETE FROM bookingservice.event " +
-                        "WHERE name = ?",
-                event.getName());
+        try {
+            jdbcTemplate.update("DELETE FROM bookingservice.event " +
+                            "WHERE name = ?",
+                    event.getName());
+        } catch (DataAccessException e) {
+            logger.debug(e.getMessage(), e.fillInStackTrace());
+        }
     }
 
     @Override
     public Event getByName(String name) {
-        return jdbcTemplate.queryForObject("SELECT * FROM bookingservice.event " +
-                        "WHERE name = ?",
-                new Object[] {name},
-                new EventMapper());
+        Event event = null;
+        try {
+            event = jdbcTemplate.queryForObject("SELECT * FROM bookingservice.event " +
+                            "WHERE name = ?",
+                    new Object[] {name},
+                    new EventMapper());
+        } catch (DataAccessException e) {
+            logger.debug(e.getMessage(), e.fillInStackTrace());
+        }
+        return event;
     }
 
     @Override
     public List<Event> getAll() {
-        return jdbcTemplate.query("SELECT * FROM bookingservice.event ",
-                new EventMapper());
+        List<Event> events = null;
+        try {
+            events = jdbcTemplate.query("SELECT * FROM bookingservice.event ",
+                    new EventMapper());
+        } catch (DataAccessException e) {
+            logger.debug(e.getMessage(), e.fillInStackTrace());
+        }
+        return events;
     }
 
     @Override
     public List<Event> getForDateRange(LocalDateTime from, LocalDateTime to) {
-        return jdbcTemplate.query("SELECT * FROM bookingservice.event " +
-                "WHERE datetime < ? AND  datetime > ?",
-                new Object[] {to, from},
-                new EventMapper());
+        List<Event> events = null;
+        try {
+            events = jdbcTemplate.query("SELECT * FROM bookingservice.event " +
+                            "WHERE datetime < ? AND  datetime > ?",
+                    new Object[] {to, from},
+                    new EventMapper());
+        } catch (DataAccessException e) {
+            logger.debug(e.getMessage(), e.fillInStackTrace());
+        }
+        return events;
     }
 
     @Override
