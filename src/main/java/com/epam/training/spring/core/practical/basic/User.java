@@ -8,15 +8,18 @@ public class User {
     private String email;
     private Set<Ticket> bookedTickets;
     private boolean isRegistered;
-
     private Date birthday;
 
-    public User(String name, String email, Date birthday) {
-        this.id = new Random().nextInt();
+    public User(int id, String name, String email, Date birthday) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.birthday = birthday;
         this.bookedTickets = new HashSet();
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setEmail(String email) {

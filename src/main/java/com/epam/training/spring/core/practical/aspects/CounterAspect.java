@@ -48,7 +48,7 @@ public class CounterAspect {
     @AfterReturning("execution(* com.epam.training.spring.core.practical.services.BookingService.bookTicket()) " +
             "&& args(.., ticket)")
     public void countEventBookTicket(Ticket ticket) {
-        addEventToCounter(eventBookedTicketCounter, ticket.getEvent().getName());
+        addEventToCounter(eventBookedTicketCounter, ticket.getNameEvent());
     }
 
     private void addEventToCounter(Map<String, Integer> mapCounter, String eventName) {

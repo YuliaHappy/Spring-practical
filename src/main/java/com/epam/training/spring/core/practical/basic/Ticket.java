@@ -3,22 +3,22 @@ package com.epam.training.spring.core.practical.basic;
 public class Ticket {
     private String seat;
     private boolean isBought;
-    private Event event;
+    private String nameEvent;
     private double price;
 
-    public Ticket(String seat, Event event) {
+    public Ticket(String seat, String nameEvent) {
         this.seat = seat;
         this.isBought = false;
-        this.event = event;
+        this.nameEvent = nameEvent;
         this.price = 0;
     }
 
-    public Event getEvent() {
-        return event;
+    public String getNameEvent() {
+        return nameEvent;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setNameEvent(String nameEvent) {
+        this.nameEvent = nameEvent;
     }
 
     public String getSeat() {
@@ -50,7 +50,7 @@ public class Ticket {
         return "Ticket{" +
                 "seat='" + seat + '\'' +
                 ", isBought=" + isBought +
-                ", event=" + event.getName() +
+                ", event=" + nameEvent +
                 '}';
     }
 }

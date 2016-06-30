@@ -14,4 +14,9 @@
             </list>
         </constructor-arg>
     </bean>
+
+    <import resource="database.xml"/>
+    <bean id="databaseAuditorium" class="com.epam.training.spring.core.practical.dao.impl.DatabaseAuditoriumDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
 </beans>

@@ -9,12 +9,12 @@ import java.util.Set;
 
 public class BookingService {
     private DiscountService discountService;
-    private Map<Event, Set<Ticket>> bookings;
+    private Map<String, Set<Ticket>> bookings;
 
     public BookingService() {
     }
 
-    public BookingService(DiscountService discountService, Map<Event, Set<Ticket>> bookings) {
+    public BookingService(DiscountService discountService, Map<String, Set<Ticket>> bookings) {
         this.discountService = discountService;
         this.bookings = bookings;
     }
@@ -34,14 +34,14 @@ public class BookingService {
         if (isBook(ticket)) {
             throw new IllegalArgumentException("Ticket already booked!");
         }
-        bookings.get(ticket.getEvent()).add(ticket);
+        bookings.get(ticket.getNameEvent()).add(ticket);
         if (user.isRegistered()) {
             user.addBookedTicket(ticket);
         }
     }
 
     private boolean isBook(Ticket ticket) {
-        Set<Ticket> tickets = bookings.get(ticket.getEvent());
+        Set<Ticket> tickets = bookings.get(ticket.getNameEvent());
         return !ticket.isBought() && tickets.contains(ticket);
     }
 }
