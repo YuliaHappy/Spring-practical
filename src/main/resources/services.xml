@@ -7,7 +7,8 @@
     <import resource="userDao.xml"/>
     <bean id="userService" class="com.epam.training.spring.core.practical.services.UserService">
         <!--<constructor-arg ref="memoryUser"/>-->
-        <constructor-arg ref="databaseUser"/>
+        <!--<constructor-arg ref="databaseUser"/>-->
+        <constructor-arg ref="hibernateUser"/>
     </bean>
 
     <import resource="eventDao.xml"/>
@@ -37,5 +38,20 @@
             <map>
             </map>
         </constructor-arg>
+    </bean>
+
+    <bean id="hibernateEmployee" class="com.epam.training.spring.core.practical.dao.impl.HibernateEmployeeDao"/>
+    <bean id="employeeService" class="com.epam.training.spring.core.practical.services.EmployeeService">
+        <constructor-arg ref="hibernateEmployee"/>
+    </bean>
+
+    <bean id="hibernateJob" class="com.epam.training.spring.core.practical.dao.impl.HibernateJobDao"/>
+    <bean id="jobService" class="com.epam.training.spring.core.practical.services.JobService">
+        <constructor-arg ref="hibernateJob"/>
+    </bean>
+
+    <bean id="jobEmplService" class="com.epam.training.spring.core.practical.services.JobEmplService">
+        <constructor-arg ref="hibernateJob"/>
+        <constructor-arg ref="hibernateEmployee"/>
     </bean>
 </beans>

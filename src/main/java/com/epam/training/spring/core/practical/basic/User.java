@@ -1,17 +1,33 @@
 package com.epam.training.spring.core.practical.basic;
 
+import javax.persistence.*;
 import java.util.*;
 
+@Entity(name = "User")
+@Table(name = "user", schema = "bookingservice")
 public class User {
+    @Id
+    @SequenceGenerator(name = "user_seq", sequenceName = "bookingservice.user_id_seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "user_seq")
     private int id;
+
     private String name;
+
     private String email;
-    private Set<Ticket> bookedTickets;
+
     private boolean isRegistered;
+
+    @Temporal(TemporalType.DATE)
     private Date birthday;
 
     public User() {
 
+    }
+
+    public User(String name, String email, Date birthday) {
+        this.name = name;
+        this.email = email;
+        this.birthday = birthday;
     }
 
     public User(int id, String name, String email, Date birthday) {
@@ -19,7 +35,6 @@ public class User {
         this.name = name;
         this.email = email;
         this.birthday = birthday;
-        this.bookedTickets = new HashSet();
     }
 
     public void setId(int id) {
@@ -42,10 +57,6 @@ public class User {
         this.birthday = birthday;
     }
 
-    public void addBookedTicket(Ticket ticket) {
-        bookedTickets.add(ticket);
-    }
-
     public int getId() {
         return id;
     }
@@ -56,10 +67,6 @@ public class User {
 
     public String getEmail() {
         return email;
-    }
-
-    public Set<Ticket> getBookedTickets() {
-        return bookedTickets;
     }
 
     public boolean isRegistered() {
@@ -76,17 +83,14 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", bookedTickets=" + bookedTickets.toString() +
                 ", isRegistered=" + isRegistered +
                 ", birthday=" + birthday +
                 '}';
     }
 
-    public void update(String name, String email,
-                       Set<Ticket> bookedTickets, boolean isRegistered) {
+    public void update(String name, String email, boolean isRegistered) {
         this.name = name;
         this.email = email;
-        this.bookedTickets = bookedTickets;
         this.isRegistered = isRegistered;
     }
 }

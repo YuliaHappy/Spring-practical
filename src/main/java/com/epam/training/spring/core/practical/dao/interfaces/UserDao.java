@@ -15,5 +15,5 @@ public interface UserDao {
     List<User> getUsersByName(String name);
     Set<Ticket> getBookedTickets(User user);
     boolean isRegistered(User user);
-    List<User> getAll();
+    List getAll();
 }

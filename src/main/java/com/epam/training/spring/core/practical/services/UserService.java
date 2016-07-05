@@ -3,6 +3,9 @@ package com.epam.training.spring.core.practical.services;
 import com.epam.training.spring.core.practical.basic.Ticket;
 import com.epam.training.spring.core.practical.basic.User;
 import com.epam.training.spring.core.practical.dao.interfaces.UserDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;

@@ -31,8 +31,7 @@ public class MemoryUserDaoImpl implements UserDao{
         for (User u :
                 users) {
             if (u.getId() == user.getId()) {
-                u.update(user.getName(), user.getEmail(), user.getBookedTickets(),
-                        user.isRegistered());
+                u.update(user.getName(), user.getEmail(), user.isRegistered());
             }
         }
     }
@@ -69,7 +68,7 @@ public class MemoryUserDaoImpl implements UserDao{
     }
 
     public Set<Ticket> getBookedTickets(User user) {
-        return user.getBookedTickets();
+        return null;
     }
 
     public boolean isRegistered(User user) {

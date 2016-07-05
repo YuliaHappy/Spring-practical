@@ -35,9 +35,6 @@ public class BookingService {
             throw new IllegalArgumentException("Ticket already booked!");
         }
         bookings.get(ticket.getNameEvent()).add(ticket);
-        if (user.isRegistered()) {
-            user.addBookedTicket(ticket);
-        }
     }
 
     private boolean isBook(Ticket ticket) {
