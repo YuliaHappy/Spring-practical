@@ -22,9 +22,4 @@ public class JobEmplService {
     public Employee getEmployeeById(int idEmployee) {
         return employeeDao.getById(idEmployee);
     }
-
-//    public void appointEmployee(int idJob, Employee employee) {
-//        jobDao.appointEmployee(idJob, employee);
-//        employeeDao.addJob(employee.getId(), jobDao.getById(idJob));
-//    }
 }

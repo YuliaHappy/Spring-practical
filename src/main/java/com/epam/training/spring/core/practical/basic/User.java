@@ -18,7 +18,6 @@ public class User {
     private boolean isRegistered;
 
     @Temporal(TemporalType.DATE)
-//    @Column(name = "birthday")
     private Date birthday;
 
     public User() {

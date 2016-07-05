@@ -12,5 +12,4 @@ public interface EmployeeDao {
     List<Employee> getAll();
     Employee getById(int idEmployee);
     List<Job> getJobsById(int idEmployee);
-//    void addJob(int idEmployee, Job job);
 }

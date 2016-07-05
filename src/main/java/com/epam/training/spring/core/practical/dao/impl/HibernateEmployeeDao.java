@@ -45,10 +45,4 @@ public class HibernateEmployeeDao implements EmployeeDao {
     public List<Job> getJobsById(int idEmployee) {
         return getById(idEmployee).getJobs();
     }
-
-//    @Transactional
-//    @Override
-//    public void addJob(int idEmployee, Job job) {
-//        getById(idEmployee).addJob(job);
-//    }
 }
