@@ -32,5 +32,23 @@
             <input class="bth bth-default" type="submit" value="В виде PDF" formaction="/event/pdfEvents">
         </div>
     </form>
+
+    <form class="panel panel-info" action="/employee/allEmployees">
+        <div class="panel-heading">
+            <h3 class="panel-title">Получить информацию обо всех работниках:</h3>
+        </div>
+        <div class="panel-body">
+            <input class="bth bth-default" type="submit" value="В виде списка">
+        </div>
+    </form>
+
+    <form class="panel panel-info" action="/job/allJobs">
+        <div class="panel-heading">
+            <h3 class="panel-title">Получить информацию о всех работах:</h3>
+        </div>
+        <div class="panel-body">
+            <input class="bth bth-default" type="submit" value="В виде списка">
+        </div>
+    </form>
 </body>
 </html>

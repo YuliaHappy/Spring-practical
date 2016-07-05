@@ -49,7 +49,7 @@ public class UserController {
     @RequestMapping(value = USER_SAVE, method = RequestMethod.POST)
     public ModelAndView addUser(@RequestParam Map<String, String> parametrs) throws ParseException {
         userService.register(
-                new User(new Random().nextInt(), parametrs.get("name"), parametrs.get("email"),
+                new User(parametrs.get("name"), parametrs.get("email"),
                         new SimpleDateFormat("yyyy-MM-dd").parse(parametrs.get("birthday"))));
         return getAllUsers();
     }

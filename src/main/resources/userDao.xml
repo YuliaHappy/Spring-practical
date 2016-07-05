@@ -18,4 +18,6 @@
     <bean id="databaseUser" class="com.epam.training.spring.core.practical.dao.impl.DatabaseUserDaoImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
+
+    <bean id="hibernateUser" class="com.epam.training.spring.core.practical.dao.impl.HibernateUserDaoImpl"/>
 </beans>
